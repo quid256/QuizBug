@@ -1,1 +1,0 @@
-module.exports = require("npm:media-typer@0.3.0/index");

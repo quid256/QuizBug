@@ -1,1 +1,0 @@
-module.exports = require("npm:sass.js@0.9.13/dist/sass.sync.js");

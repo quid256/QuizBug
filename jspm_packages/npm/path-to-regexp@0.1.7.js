@@ -1,1 +1,0 @@
-module.exports = require("npm:path-to-regexp@0.1.7/index");

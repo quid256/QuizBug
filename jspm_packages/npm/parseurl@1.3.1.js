@@ -1,1 +1,0 @@
-module.exports = require("npm:parseurl@1.3.1/index");

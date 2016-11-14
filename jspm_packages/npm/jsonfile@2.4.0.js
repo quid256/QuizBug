@@ -1,1 +1,0 @@
-module.exports = require("npm:jsonfile@2.4.0/index.js");

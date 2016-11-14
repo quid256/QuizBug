@@ -1,1 +1,0 @@
-module.exports = require("npm:react-addons-css-transition-group@15.3.2/index.js");

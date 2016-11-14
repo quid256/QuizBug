@@ -1,1 +1,0 @@
-module.exports = require("npm:array-flatten@1.1.1/array-flatten.js");

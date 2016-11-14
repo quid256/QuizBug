@@ -1,1 +1,0 @@
-module.exports = require("npm:content-type@1.0.2/index");

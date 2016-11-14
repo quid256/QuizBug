@@ -1,1 +1,0 @@
-module.exports = require("npm:vary@1.1.0/index");

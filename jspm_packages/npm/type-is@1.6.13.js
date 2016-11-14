@@ -1,1 +1,0 @@
-module.exports = require("npm:type-is@1.6.13/index");

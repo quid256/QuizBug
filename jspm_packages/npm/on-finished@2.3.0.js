@@ -1,1 +1,0 @@
-module.exports = require("npm:on-finished@2.3.0/index");
