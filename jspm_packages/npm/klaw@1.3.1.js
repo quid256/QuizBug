@@ -1,0 +1,1 @@
+module.exports = require("npm:klaw@1.3.1/src/index.js");

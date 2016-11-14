@@ -1,0 +1,33 @@
+{
+  "name": "quizbug",
+  "version": "2.0.0",
+  "description": "A QuizBowl question reader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "QuidNovum (Chris Winkler)",
+  "license": "ISC",
+  "jspm": {
+    "dependencies": {
+      "async": "npm:async@^2.1.2",
+      "express": "npm:express@^4.14.0",
+      "jquery": "npm:jquery@^3.1.1",
+      "react": "npm:react@^15.3.2",
+      "react-addons-css-transition-group": "npm:react-addons-css-transition-group@^15.3.2",
+      "react-dom": "npm:react-dom@^15.3.2"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4",
+      "sass": "github:mobilexag/plugin-sass@^0.5.0"
+    }
+  },
+  "devDependencies": {
+    "jspm": "^0.16.48"
+  },
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}

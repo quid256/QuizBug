@@ -1,0 +1,1 @@
+module.exports = require("npm:escape-html@1.0.3/index");

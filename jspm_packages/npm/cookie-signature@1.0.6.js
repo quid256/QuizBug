@@ -1,0 +1,1 @@
+module.exports = require("npm:cookie-signature@1.0.6/index");

@@ -1,0 +1,1 @@
+module.exports = require("npm:http-errors@1.5.0/index");

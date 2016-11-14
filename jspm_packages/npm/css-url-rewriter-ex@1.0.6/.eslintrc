@@ -1,0 +1,17 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb-base",
+  "plugins": [
+    "mocha"
+  ],
+  "env": {
+    "mocha": true
+  },
+  "globals": {
+    "chai": true
+  },
+  "rules": {
+    "class-methods-use-this": 0,
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.spec.js"]}]
+  }
+}

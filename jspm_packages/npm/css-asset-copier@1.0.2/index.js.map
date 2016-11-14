@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/index.js"],"names":["default"],"mappings":";;;;;;;;;;;;mDAESA,O;;;;;;;;;mDACAA,O;;;;AAHT","file":"index.js","sourcesContent":["import 'core-js';\n\nexport { default as CssUrlRewriter } from './CssUrlRewriter';\nexport { default as CssAssetCopier } from './CssAssetCopier';\n"]}

@@ -1,0 +1,1 @@
+module.exports = require("npm:merge-descriptors@1.0.1/index");

@@ -1,0 +1,47 @@
+{
+  "name": "css-url-rewriter-ex",
+  "version": "1.0.6",
+  "description": "CSS URL rewriter",
+  "main": "dist/CssUrlRewriter.js",
+  "keywords": [
+    "CSS",
+    "URL",
+    "rewrite"
+  ],
+  "author": "Artem Butusov <art.sormy@gmail.com>",
+  "homepage": "https://github.com/sormy/css-url-rewriter",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sormy/css-url-rewriter"
+  },
+  "bugs": {
+    "url": "https://github.com/sormy/css-url-rewriter/issues"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-eslint": "^7.0.0",
+    "babel-plugin-transform-class-properties": "^6.16.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-register": "^6.16.3",
+    "chai": "^3.5.0",
+    "eslint": "^3.9.1",
+    "eslint-config-airbnb-base": "^9.0.0",
+    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-mocha": "^4.6.0",
+    "mkdirp": "^0.5.1",
+    "mocha": "^3.1.2",
+    "rimraf": "^2.5.4"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.18.0"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "mkdirp dist && babel src --out-dir dist --ignore spec.js --source-maps",
+    "lint": "eslint .",
+    "test": "mocha --compilers js:babel-register 'src/**/*.spec.js'",
+    "prepublish": "npm run lint && npm run test && npm run build"
+  }
+}
