@@ -135,7 +135,13 @@ class QuestionContainer extends React.Component {
 					this.props.isMobile ? (
 						<table className="buttongroup" style={{"width": "100%"}}><tbody><tr>
 							<td style={{width: "25%"}}><button ref="nextBttn" onClick={this.props.onNext}><i className="fa fa-caret-square-o-right fa-lg"></i></button></td>
-							<td style={{width: "50%"}}><button ref="buzzBttn" onClick={this.props.onBuzz}>BUZZ</button></td>
+							<td style={{width: "50%"}}><button ref="buzzBttn" onClick={this.props.onBuzz}>{
+								{
+									"READING": "BUZZ",
+									"WAITING": "SHOW",
+									"SHOWING": "NEXT"
+								}[this.props.readerState]
+							}</button></td>
 		  				<td style={{width: "25%"}}><button ref="questionsBttn" onClick={this.props.onQuestions}><i className="fa fa-refresh fa-lg"></i> Q'S</button></td>
 		  			</tr></tbody></table>
 					) : (
@@ -489,7 +495,7 @@ export class App extends React.Component {
 						<span className="attribution">
 						A Quinterest Add-On<br/>
 						Created by Chris Winkler<br/>
-						v1.1.0<br/>
+						v2.1<br/>
 						Questions/comments? Contact <a href="mailto:quidnovum@gmail.com" target="_blank">quidnovum@gmail.com</a>
 						</span>
 						<span className="pullover-bars"><i className="fa fa-bars"></i></span>
