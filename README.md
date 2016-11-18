@@ -7,7 +7,7 @@ Make sure you have `npm` and `jspm` installed.
 After cloning the repository, type
 ```
 npm install
-jspm install```
+jspm install ```
 
 into a terminal window at the repository. After the packages are loaded, you should be able to run the local server with the command `node .`.
 
