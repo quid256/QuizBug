@@ -1,0 +1,4 @@
+### Ignore the build files except for the bundled HTML
+quizbug.css
+quizbug.js
+quizbug.js.map

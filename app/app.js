@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import async from 'async';
 import $ from 'jquery';
 
@@ -13,8 +12,15 @@ function range(l) {
 	return Array.apply(null, Array(l)).map(function (_, i) {return i;});
 }
 
-// Create a data file that can be downloaded
-var saveData;
+function shuffle(l) {
+  for (let i = 0; i < l.length; i++) {
+    let otherF = Math.floor(Math.random() * l.length);
+    temp = l[i];
+    l[i] = l[otherF + i];
+    l[otherF + i] = temp;
+  }
+  return l;
+}
 
 class QuestionContainer extends React.Component {
 
@@ -42,15 +48,11 @@ class QuestionContainer extends React.Component {
 		});
 
 		if (nextProps.questionData.curInd != this.props.questionData.curInd && nextProps.questionData.curInd !== null) {
-			this.setState({
-				wordIndex: 0
-			});
+			this.setState({wordIndex: 0});
 		}
 
 		if (nextProps.setID != this.props.setID) {
-			this.setState({
-				wordIndex: 0
-			});
+			this.setState({wordIndex: 0});
 		}
 
 		if (nextProps.readerState == "READING") {
@@ -65,9 +67,7 @@ class QuestionContainer extends React.Component {
 						this.setState({wordIndex: this.state.wordIndex + 1});
 					} else {
 						clearInterval(this.state.readTimer);
-						this.setState({
-							readTimer: -1
-						});
+						this.setState({readTimer: -1});
 						this.props.onReadingFinished();
 					}
 					this.scrollToBottom();
@@ -75,9 +75,7 @@ class QuestionContainer extends React.Component {
 			});
 
 			if (nextProps.readerState != this.props.readerState) {
-				this.setState({
-					wordIndex: 0
-				});
+				this.setState({wordIndex: 0});
 			}
 
 		}
@@ -86,9 +84,7 @@ class QuestionContainer extends React.Component {
 
 			if (this.props.readerState == "READING") {
 				clearInterval(this.state.readTimer);
-				this.setState({
-					readTimer: -1
-				});
+				this.setState({readTimer: -1});
 			}
 			setTimeout(this.scrollToBottom.bind(this), 300);
     }
@@ -153,6 +149,7 @@ class QuestionContainer extends React.Component {
 					)
 				}
 
+
   		</div>
     );
   }
@@ -162,6 +159,9 @@ class UIContainer extends React.Component {
 
 	constructor(props) {
 		super(props);
+    this.state = {
+      downloadData: ""
+    };
 	}
 
 	cardSelection() {
@@ -199,7 +199,10 @@ class UIContainer extends React.Component {
 	}
 
 	saveCardData() {
-		saveData(this.refs.cardarea.value, "cards.txt");
+    this.setState({
+      downloadData: this.refs.cardarea.value
+    });
+		this.refs.dl.click();
 	}
 
 	pressBttn(name) {
@@ -212,6 +215,10 @@ class UIContainer extends React.Component {
 	slider() {
 		// console.log("speed", 50 + (100 - this.refs.speedInput.value) * 3);
 		this.props.slider(50 + (100 - this.refs.speedInput.value) * 3);
+	}
+
+	preventExtraneousKeys(ev) {
+		ev.stopPropagation();
 	}
 
   render() {
@@ -229,18 +236,19 @@ class UIContainer extends React.Component {
   			</tr></tbody></table>
 
   			<div className="textcontainer">
-  				<textarea ref="cardarea"></textarea>
+  				<textarea ref="cardarea" onKeyPress={ this.preventExtraneousKeys.bind(this) }></textarea>
   			</div>
 
   			<span className="speedlabel">Question Speed: [slow]</span>
   			<input type="range" ref="speedInput" defaultValue="50" onChange={ this.slider.bind(this) }/>
   			<span className="endspeedlabel">[fast]</span>
+        <a style={{display: "none"}} ref="dl" download="cards.txt" href={"data:text/plain;base64," + btoa(unescape(encodeURIComponent(this.state.downloadData)))}></a>
   		</div>
     );
   }
 }
 
-class App extends React.Component {
+export class App extends React.Component {
 
   constructor(props) {
     super(props);
@@ -350,7 +358,7 @@ class App extends React.Component {
 			}
 
 			var indList = range(fullQuestionArray.length);
-			// console.log(fullQuestionArray[0]);
+
 			this.setState({
 				questions: {
 					textList: fullQuestionArray,
@@ -384,25 +392,38 @@ class App extends React.Component {
 	}
 
 	nextQuestion() {
-		let qIndex = this.state.questions.indList.indexOf(this.state.questions.curInd);
-		let newIndList = this.state.questions.indList.slice(0, qIndex)
-			.concat(this.state.questions.indList.slice(qIndex + 1));
+    if (this.state.questions.indList.length <= 1) {
+			let indList = range(this.state.questions.textList.length);
+			this.setState({
+				questions: {
+					textList: this.state.questions.textList,
+					indList: indList,
+					curInd: choose(indList)
+				},
+				setID: this.state.setID + 1,
+				readerState: "READING"
+			});
+    } else {
+			let qIndex = this.state.questions.indList.indexOf(this.state.questions.curInd);
+			let newIndList = this.state.questions.indList.slice(0, qIndex)
+				.concat(this.state.questions.indList.slice(qIndex + 1));
 
-		this.setState({
-			questions: {
-				textList: this.state.questions.textList,
-				indList: newIndList,
-				curInd: choose(newIndList)
-			},
-			readerState: "READING"
-		});
+			this.setState({
+				questions: {
+					textList: this.state.questions.textList,
+					indList: newIndList,
+					curInd: choose(newIndList)
+				},
+				readerState: "READING"
+			});
+		}
+
 
 	}
 
 	onRSZ() {
 		var isNowMobile = this.state.isMobileReq.matches;
 		if (this.state.isMobile != isNowMobile) {
-			// console.log("small", isNowMobile);
 			this.setState({
 				"isMobile": isNowMobile
 			});
@@ -487,40 +508,3 @@ class App extends React.Component {
     );
   }
 }
-
-
-
-
-addEventListener("load", function() {
-	ReactDOM.render(<App/>, document.getElementById("appContainer"));
-	saveData = (function () {
-		var a = document.createElement("a");
-		document.body.appendChild(a);
-		a.style = "display: none";
-		return function (data, fileName) {
-			a.href = "data:text/plain;base64," + btoa(unescape(encodeURIComponent(data)));
-			a.download = fileName;
-			a.click();
-		};
-	}());
-}, 10);
-
-
-
-
-//
-//
-//
-// 	$("textarea").keypress(function(e) {
-// 	  var $this, end, start;
-// 	  if (e.keyCode === 9) {
-// 	    start = this.selectionStart;
-// 	    end = this.selectionEnd;
-// 	    $this = $(this);
-// 	    $this.val($this.val().substring(0, start) + "\t" + $this.val().substring(end));
-// 	    this.selectionStart = this.selectionEnd = start + 1;
-// 	    return false;
-// 	  }
-// 	  e.originalEvent.stopPropagation();
-// 	});
-//

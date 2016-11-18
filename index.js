@@ -7,7 +7,7 @@ var app = express();
 
 app.use("/css", express.static("css"));
 app.use("/scss", express.static("scss"));
-app.use("/dist", express.static("bundle"));
+app.use("/dist", express.static("dist"));
 app.use("/jspm_packages", express.static("jspm_packages"));
 app.use("/app", express.static("app"));
 
