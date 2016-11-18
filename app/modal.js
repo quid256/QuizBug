@@ -361,7 +361,8 @@ export class HelpModal extends React.Component {
               <li>The ability to create notecards from parts of the question by selecting a part of the question and either pressing [C] or clicking the [Notecard] button</li>
               <li>The ability to download the flashcards you have created as a Tab-separated text file usable with flashcard programs like Mnemosyne by clicking the [Download] button</li>
             </ul>
-            Questions/comments/new ideas? Contact <a href="mailto:quidnovum@gmail.com" target="_blank">quidnovum@gmail.com</a>
+            Questions/comments/new ideas? Contact <a href="mailto:quidnovum@gmail.com" target="_blank">quidnovum@gmail.com</a><br/>
+            Interested in contributing? <a href="https://github.com/quid256/QuizBug" target="_blank">Check this project out on GitHub</a>
           </div><br/>
           <table className="buttongroup"><tbody><tr><td>
             <button id="helpform-close" onClick={ this.props.onClosing }><i className="fa fa-close fa-lg"></i>CLOSE</button>

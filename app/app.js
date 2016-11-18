@@ -496,7 +496,7 @@ export class App extends React.Component {
 						A Quinterest Add-On<br/>
 						Created by Chris Winkler<br/>
 						v2.1<br/>
-						Questions/comments? Contact <a href="mailto:quidnovum@gmail.com" target="_blank">quidnovum@gmail.com</a>
+						Questions/comments? Contact <a href="mailto:quidnovum@gmail.com" target="_blank">quidnovum@gmail.com</a><br/>
 						</span>
 						<span className="pullover-bars"><i className="fa fa-bars"></i></span>
 					</div>
