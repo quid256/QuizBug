@@ -145,13 +145,15 @@ class QuestionContainer extends React.Component {
 		  				<td style={{width: "25%"}}><button ref="questionsBttn" onClick={this.props.onQuestions}><i className="fa fa-refresh fa-lg"></i> Q'S</button></td>
 		  			</tr></tbody></table>
 					) : (
-						<span id="msg"><em>Press [Space] {
-							{
-								"READING": "to buzz",
-								"WAITING": "to see the answer",
-								"SHOWING": "for the next question"
-							}[this.props.readerState]
-						}</em></span>
+						<table className="buttongroup" style={{"width": "100%"}}><tbody><tr>
+							<td style={{width: "100%"}}><button ref="buzzBttn" onClick={this.props.onBuzz}>{
+								{
+									"READING": "BUZZ [Space]",
+									"WAITING": "SHOW [Space]",
+									"SHOWING": "NEXT [Space]"
+								}[this.props.readerState]
+							}</button></td>
+		  			</tr></tbody></table>
 					)
 				}
 

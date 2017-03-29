@@ -7,7 +7,7 @@ var app = express();
 
 app.use("/css", express.static("css"));
 app.use("/scss", express.static("scss"));
-app.use("/dist", express.static("dist"));
+app.use("/bundled", express.static("dist"));
 app.use("/jspm_packages", express.static("jspm_packages"));
 app.use("/app", express.static("app"));
 
@@ -21,9 +21,9 @@ app.get("/", function(req, res) {
 	res.end(fs.readFileSync('index.html'));
 });
 
-app.get("/bundled", function(req, res) {
+app.get("/bundled/things", function(req, res) {
 	res.writeHead(200, {'Content-Type': 'text/html'});
-	res.end(fs.readFileSync('index-bundled.html'));
+	res.end(fs.readFileSync('dist/quizbug.html'));
 });
 
 app.get("/build.js", function(req, res) {
